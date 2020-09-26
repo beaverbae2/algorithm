@@ -2,6 +2,7 @@ package A2020_09_25;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_2606_바이러스_unionFind {
@@ -23,6 +24,7 @@ public class BOJ_2606_바이러스_unionFind {
 			int b = Integer.parseInt(st.nextToken());
 			unionParent(a, b);
 		}
+		System.out.println(Arrays.toString(parent));
 		for (int v = 2; v < parent.length; v++) {
 			if(findParent(1, v)) answer++;
 		}
