@@ -47,8 +47,6 @@ public class Dijkstra_pq {
 			
 			if(dist[v]<cost) continue;
 			
-			System.out.println(v);
-			System.out.println(Arrays.toString(dist));
 			
 			for (int next_v = 0; next_v < graph.length; next_v++) {
 				int next_cost = cost+graph[v][next_v];
