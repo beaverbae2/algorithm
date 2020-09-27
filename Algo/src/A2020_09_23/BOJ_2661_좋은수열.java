@@ -29,10 +29,12 @@ public class BOJ_2661_좋은수열 {
 			int cnt = 0;
 			int last_idx = str.length()-1;
 			int idx = 0;
+			//연속성 검사
 			while(true) {
 				int next_idx = last_idx - 2*idx-1;
 				if(next_idx<0) break;
-			
+				
+				//mid_idx기준으로 1개 1개, 2개 2개, 3개 3개 .. 비교
 				int mid_idx = 1+(next_idx+last_idx)/2;
 				String left = str.substring(next_idx,mid_idx);
 				String right = str.substring(mid_idx);

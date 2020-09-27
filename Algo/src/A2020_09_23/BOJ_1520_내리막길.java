@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 //dp
 public class BOJ_1520_내리막길 {
 	static int[][] map;
-	static int[][] dp;
+	static int[][] dp;//dp[i][j] : (i,j)에서 (R,C) 로 갈수 있는 내리막길 경로의 개수
 	static int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
 	static int R,C;
 	
@@ -30,15 +30,15 @@ public class BOJ_1520_내리막길 {
 			}
 		}
 		
-		System.out.println(dfs(0,0));
+		System.out.println(dfs(0,0));//dp[0][0]가 정답
 	}
 	
 	private static int dfs(int r, int c) {
-		if(dp[r][c]!=-1) return dp[r][c];
+		if(dp[r][c]!=-1) return dp[r][c]; //방문한 경우 값 리턴
 		
 		if(r==R-1&&c==C-1) return 1;
 		
-		dp[r][c] = 0;
+		dp[r][c] = 0;//방문 표시
 		
 		for (int i = 0; i < dirs.length; i++) {
 			int nr = r+dirs[i][0];
