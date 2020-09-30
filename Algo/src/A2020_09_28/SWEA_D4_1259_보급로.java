@@ -3,7 +3,9 @@ package A2020_09_28;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class SWEA_D4_1259_보급로 {
@@ -39,25 +41,39 @@ public class SWEA_D4_1259_보급로 {
 	}
 
 	private static void bfs() {
-		Queue<int[]> q = new LinkedList<>();
-		q.offer(new int[] {0,0,0});
+		//Queue<int[]> q = new LinkedList<>();
+		PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
+
+			@Override
+			public int compare(int[] o1, int[] o2) {
+				return Integer.compare(o1[2], o2[2]);
+			}
+		});
+		
+		//q.offer(new int[] {0,0,0});
+		pq.add(new int[] {0,0,0});
 		dist[0][0] = 0;
 		
-		while(!q.isEmpty()) {
-			int[] elem = q.poll();
+		while(!pq.isEmpty()) {
+			int[] elem = pq.poll();
 			int r = elem[0];
 			int c = elem[1];
 			int cost = elem[2];
+			
+			
+			if(dist[r][c]<cost) continue;
 			
 			for (int d = 0; d < dirs.length; d++) {
 				int nr = r+dirs[d][0];
 				int nc = c+dirs[d][1];
 			
-				if(nr<0||nr>=N||nc<0||nc>=N||dist[nr][nc]<cost+map[nr][nc]) continue;
+				if(nr<0||nr>=N||nc<0||nc>=N) continue;
 				
 				if(dist[nr][nc]>cost+map[nr][nc]) {
 					dist[nr][nc] = cost+map[nr][nc];
-					q.offer(new int[] {nr,nc,dist[nr][nc]});
+					//q.offer(new int[] {nr,nc,dist[nr][nc]});
+					pq.add(new int[] {nr,nc,dist[nr][nc]});
+					
 				}
 			}
 		}
