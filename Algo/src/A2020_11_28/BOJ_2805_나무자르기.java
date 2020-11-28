@@ -29,10 +29,10 @@ public class BOJ_2805_나무자르기 {
 		while(true) {
 			if(min>max) break;
 			int mid = (min+max)/2;
-			long cut = 0;
+			long cut = 0;//long type!! 
 			
 			for (int i = 0; i < N; i++) {
-				if(trees[i]>mid) cut += trees[i]-mid;
+				if(trees[i]>mid) cut += trees[i]-mid; //조건문!!
 			}
 
 			if(cut>=H) {
