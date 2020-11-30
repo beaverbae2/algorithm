@@ -49,13 +49,18 @@
   ```
 
 # 어려웠던 문제
+- [백준 17141 연구소 2](https://www.acmicpc.net/problem/17141)
+  - 빈칸 처리가 까다로웠다(시점)
+    - 시작부터 빈칸이 0인 경우가 존재
+    - 빈칸이 0개인지 확인하는 조건을 queue돌리는 반복문의 끝에 둬야 했다 
 
 - [백준 1300 K번째 수](https://www.acmicpc.net/problem/1300)
   - 어렵다....
   - [참고링크](https://geehye.github.io/baekjoon-1300/) 
+
 - [백준 2512 예산](https://www.acmicpc.net/problem/2512)
   - 같은 수가 여러 개가 있는 경우가 까다로웠다. HashMap을 이용해서 처리했다
-
+  
 
   
 
