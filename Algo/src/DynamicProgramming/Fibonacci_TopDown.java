@@ -16,6 +16,7 @@ public class Fibonacci_TopDown {
 	}
 	
 	private static long fibo(int n) {
+		System.out.println("f("+n+")");
 		if(n==1||n==2) dp[n] = 1;
 		if(dp[n]!=0) return dp[n];
 		
