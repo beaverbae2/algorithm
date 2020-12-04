@@ -43,6 +43,7 @@ public class BOJ_1987_알파벳 {
 				int index = ch-'A';
 				if(visited[index]) {
 					answer = Math.max(answer, move_cnt);
+					//return; NOT!!!
 				}else {
 					visited[index] = true;
 					dfs(nr, nc, move_cnt+1);
