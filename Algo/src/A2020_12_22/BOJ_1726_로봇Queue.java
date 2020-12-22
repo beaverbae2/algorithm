@@ -3,7 +3,7 @@ package A2020_12_22;
 import java.util.*;
 import java.io.*;
 
-public class BOJ_1726_로봇PQ {
+public class BOJ_1726_로봇Queue {
 	static int[][] map;
 	static int R, C;
 	static int sr, sc, sdir;
@@ -79,79 +79,42 @@ public class BOJ_1726_로봇PQ {
 			
 			if (visited[dir][r][c] < depth) continue;
 		
-			//왼
+			//방향 전환
 			int next_dir = dir;
-			int next_depth = depth;
 			int cnt = 0;
 			while(true) {
-				if(cnt == 2) break;
+				if(cnt == 4) break;
 				
-				for (int k = 1; k <= 3; k++) {
-					int nr = r + k*dirs[next_dir][0];
-					int nc = c + k*dirs[next_dir][1];
-					
-					if (isInMap(nr, nc)&&visited[next_dir][nr][nc] >= next_depth+1&&map[nr][nc] == 0) {
-						q.offer(new Elem(nr, nc, next_dir, next_depth+1));
-						visited[next_dir][nr][nc] = next_depth+1;
-					}else break;
+				int next_depth = depth;
+				
+				if (cnt % 2 == 0) {
+					next_depth += cnt;
+				}else {
+					next_depth += 1;
 				}
 				
-				next_dir = turnLeft(next_dir);
-				next_depth++;
-				if (visited[next_dir][r][c]>=next_depth) visited[next_dir][r][c] = next_depth;
-				cnt++;
-			}
-			
-			//오
-			next_dir = dir;
-			next_depth = depth;
-			cnt = 0;
-			while(true) {
-				next_dir = turnRight(next_dir);
-				next_depth++;
 				cnt++;
 				
-				if(cnt == 3) break;
+				if (visited[next_dir][r][c]>=next_depth) {
+					visited[next_dir][r][c] = next_depth;
 				
-				for (int k = 1; k <= 3; k++) {
-					int nr = r + k*dirs[next_dir][0];
-					int nc = c + k*dirs[next_dir][1];
-					
-					if (isInMap(nr, nc)&&visited[next_dir][nr][nc] >= next_depth+1&&map[nr][nc] == 0) {
-						q.offer(new Elem(nr, nc, next_dir, next_depth+1));
-						visited[next_dir][nr][nc] = next_depth+1;
-					}else break;
+					for (int k = 1; k <= 3; k++) {
+						int nr = r + k*dirs[next_dir][0];
+						int nc = c + k*dirs[next_dir][1];
+						
+						if (isInMap(nr, nc)&&visited[next_dir][nr][nc] >= next_depth+1&&map[nr][nc] == 0) {
+							q.offer(new Elem(nr, nc, next_dir, next_depth+1));
+							visited[next_dir][nr][nc] = next_depth+1;
+						}else break;
+					}
 				}
-				
-				if (visited[next_dir][r][c]>=next_depth) visited[next_dir][r][c] = next_depth;
+				next_dir = turn(next_dir);
 			}
 		}
-		
-		
 		return visited[edir][er][ec];
 	}
-
-	private static int turnLeft(int dir) {
-		switch (dir) {
-		case 1:
-			dir = 4;
-			break;
-		case 2:
-			dir = 3;
-			break;
-		case 3:
-			dir = 1;
-			break;
-		case 4:
-			dir = 2;
-			break;
-		default:
-			break;
-		}
-		return dir;
-	}
 	
-	private static int turnRight(int dir) {
+	private static int turn(int dir) {
 		switch (dir) {
 		case 1:
 			dir = 3;
