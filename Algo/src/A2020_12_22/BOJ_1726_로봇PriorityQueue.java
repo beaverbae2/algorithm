@@ -3,7 +3,7 @@ package A2020_12_22;
 import java.util.*;
 import java.io.*;
 
-public class BOJ_1726_로봇Queue {
+public class BOJ_1726_로봇PriorityQueue {
 	static int[][] map;
 	static int R, C;
 	static int sr, sc, sdir;
