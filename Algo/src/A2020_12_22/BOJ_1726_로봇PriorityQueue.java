@@ -3,7 +3,7 @@ package A2020_12_22;
 import java.util.*;
 import java.io.*;
 
-public class BOJ_1726_로봇PQ {
+public class BOJ_1726_로봇Queue {
 	static int[][] map;
 	static int R, C;
 	static int sr, sc, sdir;
@@ -59,8 +59,8 @@ public class BOJ_1726_로봇PQ {
 	}
 	
 	private static int bfs() {
-		Queue<Elem> q = new LinkedList<>();
-		q.offer(new Elem(sr, sc, sdir, 0));
+		PriorityQueue<Elem> pq = new PriorityQueue<>();
+		pq.offer(new Elem(sr, sc, sdir, 0));
 		
 		visited = new int[5][R][C];
 		for (int i = 0; i < visited.length; i++) {
@@ -70,8 +70,8 @@ public class BOJ_1726_로봇PQ {
 		}
 		visited[sdir][sr][sc] = 0;
 		
-		while(!q.isEmpty()){
-			Elem e = q.poll();
+		while(!pq.isEmpty()){
+			Elem e = pq.poll();
 			int r = e.r;
 			int c = e.c;
 			int dir = e.dir;
@@ -79,6 +79,8 @@ public class BOJ_1726_로봇PQ {
 			
 			if (visited[dir][r][c] < depth) continue;
 		
+			if(edir == dir && er == r && ec == c) break;
+			
 			//왼
 			int next_dir = dir;
 			int next_depth = depth;
@@ -91,7 +93,7 @@ public class BOJ_1726_로봇PQ {
 					int nc = c + k*dirs[next_dir][1];
 					
 					if (isInMap(nr, nc)&&visited[next_dir][nr][nc] >= next_depth+1&&map[nr][nc] == 0) {
-						q.offer(new Elem(nr, nc, next_dir, next_depth+1));
+						pq.offer(new Elem(nr, nc, next_dir, next_depth+1));
 						visited[next_dir][nr][nc] = next_depth+1;
 					}else break;
 				}
@@ -118,7 +120,7 @@ public class BOJ_1726_로봇PQ {
 					int nc = c + k*dirs[next_dir][1];
 					
 					if (isInMap(nr, nc)&&visited[next_dir][nr][nc] >= next_depth+1&&map[nr][nc] == 0) {
-						q.offer(new Elem(nr, nc, next_dir, next_depth+1));
+						pq.offer(new Elem(nr, nc, next_dir, next_depth+1));
 						visited[next_dir][nr][nc] = next_depth+1;
 					}else break;
 				}
