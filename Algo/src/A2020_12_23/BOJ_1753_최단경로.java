@@ -34,7 +34,6 @@ public class BOJ_1753_최단경로 {
 		V = Integer.parseInt(st.nextToken());
 		E = Integer.parseInt(st.nextToken());
 		graph = new List[V+1];
-		boolean[][] check = new boolean[V+1][V+1];
 		for (int i = 1; i < graph.length; i++) {
 			graph[i] = new ArrayList<>();
 		}
@@ -73,14 +72,14 @@ public class BOJ_1753_최단경로 {
 			Pair p = pq.poll();
 			int v = p.v;
 			
-			if(visited[v]) continue;
+			if (visited[v]) continue;
 			visited[v] = true;
 			
 			for (Pair next : graph[v] ) {
 				int next_v = next.v;
 				int next_w = next.w;
 				
-				if (visited[next_v]) continue;
+				//if (visited[next_v]) continue;
 				
 				if (dist[next_v] > dist[v]+next_w) {
 					dist[next_v] = dist[v]+next_w;
