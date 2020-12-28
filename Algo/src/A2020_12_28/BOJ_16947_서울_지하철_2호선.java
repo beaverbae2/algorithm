@@ -82,7 +82,7 @@ public class BOJ_16947_서울_지하철_2호선 {
 			}
 			//방문했던 노드 재방문한 경우
 			else if(next != prev && next == start) {
-				System.out.println("here");
+//				System.out.println("here");
 				return true;
 			}
 		}
