@@ -93,7 +93,7 @@ public class PGS_블록_이동하기 {
 						return depth+1;
 					}
 					
-					visited.add(nr1+""+nc1+" "+nr2+" "+nc2);
+					visited.add(nr1+" "+nc1+" "+nr2+" "+nc2);
 					q.offer(new Node(nr2, nc2, depth+1, !isVertical));
 	    		
     			}
