@@ -10,12 +10,12 @@ import java.io.*;
  *
  */
 public class BOJ_17780_새로운_게임 {
-	static int[][] map;
-	static List<Node>[][] board;
+	static int[][] map;// 격자의 색 표시
+	static List<Node>[][] board;// 격자에 있는 말 표시
 	static int N, K;
-	static int[][] dirs = { { 0, 1 }, { 0, -1 }, { -1, 0 }, { 1, 0 } };
-	static Pair[] position;
-	static boolean overSize;
+	static int[][] dirs = { { 0, 1 }, { 0, -1 }, { -1, 0 }, { 1, 0 } };// 동 서 북 남
+	static Pair[] position;// position[i] : i번째 말의 현재 위치 (r, c)
+	static boolean overSize;// 한 칸에 말이 4개 이상 확인
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -54,7 +54,6 @@ public class BOJ_17780_새로운_게임 {
 
 		int answer = 0;
 		while (true) {
-
 			if (answer > 1000) {
 				answer = -1;
 				break;
@@ -63,7 +62,7 @@ public class BOJ_17780_새로운_게임 {
 			if (overSize)
 				break;
 
-			game();
+			game();// 게임 진행
 			answer++;
 		}
 
@@ -81,26 +80,27 @@ public class BOJ_17780_새로운_게임 {
 			if (num != n)
 				continue; // 바닥에 말이 없는 경우 pass
 
-			int dir = node.dir;
-			int nr = r + dirs[dir][0];
-			int nc = c + dirs[dir][1];
+			int dir = node.dir;// 방향
+			int nr = r + dirs[dir][0];// 이동하려는 행 좌표
+			int nc = c + dirs[dir][1];// 이동하려는 열 좌표
 
-			if (isTurn(nr, nc)) {// 방향 바꾸는 경우
+			if (isTurn(nr, nc)) {// 방향 바꾸는 경우(파란색 or 벙위 밖)
 				dir = turn(dir); // 방향 변환
-				nr = r + dirs[dir][0];
-				nc = c + dirs[dir][1];
-
+				nr = r + dirs[dir][0];// 바뀐 방향으로 이동하려는 행 변경
+				nc = c + dirs[dir][1];// 바뀐 방향으로 이동하려는 열 변경
+				node.dir = dir;// 실제 board에 있는 말의 방향 변경
+				
+				
 				if (isTurn(nr, nc)) {// 방향 바꿨는데도 또 걸리는 경우
-					node.dir = dir;
-				} else {
-					node.dir = dir;// 여기도 변환을...ㅠㅠ
+					continue;// 그 자리에서 가만히 있는다
+				} else {// 이동하고, 해당 칸의 말의 개수 확인
 					move(r, c, nr, nc, dir);
 					if (checkSize(nr, nc)) {
 						overSize = true;
 						break;
 					}
 				}
-			} else {
+			} else {// 이동하고, 해당 칸의 말의 개수 확인
 				move(r, c, nr, nc, dir);
 				if (checkSize(nr, nc)) {
 					overSize = true;
@@ -110,16 +110,18 @@ public class BOJ_17780_새로운_게임 {
 
 		}
 	}
-
+	
+	// (r, c)에서의 말의 개수가 4개 이상인지 확인
 	public static boolean checkSize(int r, int c) {
 		return board[r][c].size() >= 4;
 	}
-
+	
+	// 말의 이동
 	public static void move(int r, int c, int nr, int nc, int dir) {
 		ArrayList<Node> moveNodes = new ArrayList<>();
 
 		if (map[nr][nc] == 0) {// 흰
-			for (int i = 0; i < board[r][c].size(); i++) {
+			for (int i = 0; i < board[r][c].size(); i++) {// 순서대로
 				Node node = board[r][c].get(i);
 				moveNodes.add(new Node(node.num, node.dir));
 				position[node.num] = new Pair(nr, nc);
@@ -127,7 +129,7 @@ public class BOJ_17780_새로운_게임 {
 			board[nr][nc].addAll(moveNodes);
 
 		} else if (map[nr][nc] == 1) {// 빨
-			for (int i = board[r][c].size() - 1; i >= 0; i--) {
+			for (int i = board[r][c].size() - 1; i >= 0; i--) {// 역순으로
 				Node node = board[r][c].get(i);
 				moveNodes.add(new Node(node.num, node.dir));
 				position[node.num] = new Pair(nr, nc);
@@ -136,7 +138,7 @@ public class BOJ_17780_새로운_게임 {
 		}
 
 		// 정리
-		board[r][c] = new ArrayList<>();
+		board[r][c] = new ArrayList<>();// 이동하기 전 좌표는 빈칸이 된다
 
 	}
 
@@ -148,6 +150,7 @@ public class BOJ_17780_새로운_게임 {
 		return false;
 	}
 
+	// 방향 180도 전환
 	public static int turn(int dir) {
 		if (dir == 0) {
 			dir = 1;
@@ -176,7 +179,7 @@ public class BOJ_17780_새로운_게임 {
 	}
 
 	static class Pair {
-		int r, c;
+		int r, c;// 행, 열
 
 		public Pair(int r, int c) {
 			this.r = r;
