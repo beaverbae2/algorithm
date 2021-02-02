@@ -32,7 +32,6 @@ public class BOJ_1976_여행가자_Floyd {
 				
 				if (v == 1){
 					dist[i][j] = v;
-					dist[j][i] = v;
 				}else dist[i][j] = INF;
 			}
 		}
