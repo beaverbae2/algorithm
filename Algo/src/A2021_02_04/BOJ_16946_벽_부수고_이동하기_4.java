@@ -11,7 +11,6 @@ import java.io.*;
  */
 public class BOJ_16946_벽_부수고_이동하기_4 {
 	static boolean[][] map;
-	static List<Pair> walls;
 	static List<Pair> blanks;
 
 	static int R, C;
@@ -29,7 +28,6 @@ public class BOJ_16946_벽_부수고_이동하기_4 {
 		map = new boolean[R][C];
 		answer = new int[R][C];
 		visited = new boolean[R][C];
-		walls = new LinkedList<>();
 		blanks = new LinkedList<>();
 
 		for (int r = 0; r < R; r++) {
