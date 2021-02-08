@@ -50,6 +50,8 @@ public class MyDoubleLinkedList<T> {
 	public void add(int k, T data) {
 		if (k == 0) {
 			addFirst(data);
+		}else if (k == size -1) {
+			addLast(data);
 		}else {
 			Node node = new Node(data);
 			
