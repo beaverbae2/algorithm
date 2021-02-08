@@ -1,5 +1,12 @@
 package MyLinkedList;
 
+/**
+ * 
+ * @author beave
+ * @see https://opentutorials.org/module/1335/8857
+ * 
+ */
+
 public class MyLinkedList<T> {
 	private Node head;
 	private Node tail;
