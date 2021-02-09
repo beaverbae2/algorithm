@@ -13,37 +13,28 @@ public class LinkedListTest {
 //		System.out.println(list.remove(2));
 //		System.out.println(list.remove(2));
 //		System.out.println(list);
-		
-		MyDoubleLinkedList<Integer> list = new MyDoubleLinkedList<>();
+
+		MyDoublyLinkedList<Integer> list = new MyDoublyLinkedList<>();
+		list.add(list.size(), 9);
+		list.add(0, 7);
+		list.addFirst(5);
+		System.out.println(list);
+		System.out.println(list.removeLast());
+		System.out.println(list.removeLast());
+		System.out.println(list.removeLast());
+		System.out.println(list);
+		list.add(list.size(), 9);
+		list.add(0, 7);
+		list.addFirst(5);
+		System.out.println(list);
+		System.out.println(list.remove(list.size() - 1));
 		list.addFirst(3);
-		list.addFirst(2);
-		list.addFirst(1);
-		list.addLast(4);
-		list.addLast(5);
-		System.out.println(list.removeFirst());
-		System.out.println(list.removeFirst());
-		System.out.println(list.removeLast());
-		System.out.println(list.removeLast());
 		System.out.println(list);
-		list.addLast(4);
-		list.addLast(5);
-		list.addFirst(2);
-		list.addFirst(1);
-		System.out.println(list);
-		System.out.println(list.get(1));
-		System.out.println(list.get(3));
-		System.out.println(list.get(list.size()-1));
-		
-		list.add(1, 10);
+		System.out.println(list.removeFirst());
+		list.addLast(13);
 		System.out.println(list);
 		System.out.println(list.remove(1));
 		System.out.println(list);
-		System.out.println(list.remove(list.size()-1));
-		System.out.println(list.remove(list.size()-1));
-		System.out.println(list);
-		System.out.println(list.remove(0));
-		System.out.println(list.remove(0));
-		System.out.println(list);
-		
+
 	}
 }
