@@ -92,6 +92,7 @@ public class BOJ_1800_인터넷_설치_solution {
 				}
 			}
 		}
+		
 		// V까지 이동할 떄 mid_w보다 큰 가중치의 개수가 K개 이하 여야 한다
 		return dist[V] <= K;
 	}
