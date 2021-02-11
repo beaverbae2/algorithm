@@ -11,7 +11,7 @@ import java.util.*;
  */
 
 public class PGS_호텔_방_배정_solution {
-    HashMap<Long, Long> map = new HashMap<>();
+    TreeMap<Long, Long> map = new TreeMap<>();
 
 	public long[] solution(long k, long[] room_number) {
 		long[] answer = {};
@@ -19,6 +19,7 @@ public class PGS_호텔_방_배정_solution {
 
 		for (long customer : room_number) {
 			list.add(getNextRoom(customer));
+			System.out.println("map -> "+customer+" : "+map);
 		}
 
 		answer = new long[list.size()];
@@ -39,5 +40,9 @@ public class PGS_호텔_방_배정_solution {
 		long nextRoom = getNextRoom(map.get(n));
 		map.put(n, nextRoom);
 		return map.get(n);
+	}
+	
+	public static void main(String[] args) {
+		new PGS_호텔_방_배정_solution().solution(10, new long[] { 1, 3, 4, 1, 3, 1 });
 	}
 }
