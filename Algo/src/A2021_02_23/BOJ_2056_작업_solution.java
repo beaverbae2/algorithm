@@ -73,23 +73,4 @@ public class BOJ_2056_작업_solution {
 			answer = Math.max(answer, dp[i]);
 		}
 	}
-
-	static class Node implements Comparable<Node> {
-		int v, time;
-
-		public Node(int v, int time) {
-			this.v = v;
-			this.time = time;
-		}
-
-		@Override
-		public String toString() {
-			return "Node [v=" + v + ", time=" + time + "]";
-		}
-
-		@Override
-		public int compareTo(Node o) {
-			return Integer.compare(this.time, o.time);
-		}
-	}
 }
