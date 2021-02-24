@@ -9,7 +9,7 @@ import java.io.*;
  * @see https://lemonlemon.tistory.com/93?category=838045
  */
 
-public class BOJ_2263_트리의_순회 {
+public class BOJ_2263_트리의_순회_review {
 	static int N;
 	static int[] inOrder;
 	static int[] postOrder;
