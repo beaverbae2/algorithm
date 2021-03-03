@@ -34,11 +34,11 @@ public class BOJ_20040_사이클_게임 {
 			if (answer != Integer.MAX_VALUE)
 				continue;
 
-			if (findParent(a, b)) {
+			if (findParent(a, b)) {// 사이클 확인
 				answer = i;
 			}
 
-			unionParent(a, b);
+			unionParent(a, b);// 연결
 		}
 
 		if (answer == Integer.MAX_VALUE) {
