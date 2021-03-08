@@ -72,6 +72,8 @@ public class BOJ_16954_움직이는_미로탈출 {
 	}
 
 	private static void fallWalls() {
+		if (wall_cnt == 0) return; 
+		
 		for (int i = 0; i < N; i++) {
 			if (map[N-1][i] == '#') wall_cnt--;
 		}
