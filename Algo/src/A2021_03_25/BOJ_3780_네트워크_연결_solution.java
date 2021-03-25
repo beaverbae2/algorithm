@@ -52,7 +52,7 @@ public class BOJ_3780_네트워크_연결_solution {
 		if (parent[v] == v) return v;
 		else {
 			int temp = getParent(parent[v]);
-			len[v] += len[parent[v]];
+			len[v] += len[parent[v]];// 이전 단계에서의 조상 노드
 			parent[v] = temp;
 			
 			return parent[v];
