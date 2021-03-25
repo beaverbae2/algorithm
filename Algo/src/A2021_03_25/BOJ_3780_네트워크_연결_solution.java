@@ -1,14 +1,13 @@
 package A2021_03_25;
 
 import java.util.*;
+import java.io.*;
 
 /**
  * Disjoint Set
  * @author beaverbae
  * @see https://js1jj2sk3.tistory.com/21
  */
-
-import java.io.*;
 
 public class BOJ_3780_네트워크_연결_solution {
 	static int N;
