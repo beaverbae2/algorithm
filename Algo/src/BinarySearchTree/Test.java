@@ -142,10 +142,8 @@ class BinarySearchTree {
 				root = node.left;
 			} else if (isLeftChild) {
 				parent.left = node.left;
-				node = null;
 			} else {
 				parent.right = node.left;
-				node = null;
 			}
 		}
 		
@@ -162,7 +160,7 @@ class BinarySearchTree {
 		}
 		// 삭제할 노드가 자식이 둘 다 있는 경우
 		else {
-			Node temp = getRightMinNode(node.right);
+			Node temp = getRightMinNode(node.right);// 오른쪽 서브트리에서 가장 작은 노드 찾기
 			
 			if (node == root) {
 				root = temp;
@@ -172,7 +170,7 @@ class BinarySearchTree {
 				parent.right = temp;
 			}
 			
-			temp.left = node.left;
+			temp.left = node.left; //삭제할 노드의 왼쪾 서브트리와 연결
 		}
 	}
 
