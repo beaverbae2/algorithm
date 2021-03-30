@@ -46,10 +46,10 @@ public class BOJ_4577_소코반 {
 				String str = br.readLine();
 				for (int j = 0; j < C; j++) {
 					map[i][j] = str.charAt(j);
-					if (map[i][j] == 'w' || map[i][j] == 'W' ) {
+					if (map[i][j] == 'w' || map[i][j] == 'W' ) {// 바로 생각 못한 부분2
 						r = i;
 						c = j;
-					} else if (map[i][j] == 'b' || map[i][j] == 'B') {
+					} else if (map[i][j] == 'b' || map[i][j] == 'B') {// 바로 생각 못한 부분2
 						completeCnt++;
 					}
 				}
@@ -98,7 +98,7 @@ public class BOJ_4577_소코반 {
 		int nc = c + dirs[d][1];
 		
 		char player = map[r][c];
-		char next = getNext(player);
+		char next = getNext(player);// 바로 생각 못한 부분1
 		
 		if (map[nr][nc] == '#') return;
 		else if (map[nr][nc] == '.') {
