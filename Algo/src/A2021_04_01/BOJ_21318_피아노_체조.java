@@ -10,7 +10,7 @@ import java.io.*;
  *
  */
 
-public class BOJ_2131_피아노_체조 {
+public class BOJ_21318_피아노_체조 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		HashMap<Integer, Integer> map = new HashMap<>();
