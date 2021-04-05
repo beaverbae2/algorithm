@@ -10,7 +10,7 @@ import java.io.*;
  *
  */
 
-public class BOJ_9177_단어_섞기 {
+public class BOJ_9177_단어_섞기_fail {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
