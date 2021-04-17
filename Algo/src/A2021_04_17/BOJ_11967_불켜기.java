@@ -6,7 +6,9 @@ import java.io.*;
 /**
  * 1H40MIN
  * DFS
- * 오래걸린 이유: set오류(ConcurrentModificationException) , answer처리
+ * 오래걸린 이유: 
+ * - 문제 이해 잘못함(불을 켤 수 있는 방의 개수를 구해야하는데 암소가 이동가능한 곳 구함) 
+ * - set오류(ConcurrentModificationException), answer처리
  * @author beaverbae
  *
  */
@@ -89,9 +91,9 @@ public class BOJ_11967_불켜기 {
 			int nr = next_idx/N;
 			int nc = next_idx%N;
 			if (isLight[nr][nc] && !visited[nr][nc]) {
-				// answer++ // 틀렸던 부분
+				// answer++ // 틀렸던 부분(암소가 이동할 수 있는 경우)
 				dfs(next_idx);
-				iter = set.iterator();// 오래걸린부분1
+				iter = set.iterator();// 오래 걸린 부분
 			}
 		}
 	}
