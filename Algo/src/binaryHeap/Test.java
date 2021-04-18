@@ -3,108 +3,148 @@ package binaryHeap;
 import java.util.Arrays;
 
 /**
- * MinHeap
+ * MaxHeap
  * @author beaverbae
  * @see https://wonit.tistory.com/203
+ * 
  */
 
 public class Test {
 	public static void main(String[] args) {
-		BinaryMinHeap min_heap = new BinaryMinHeap(8);
-		System.out.println(min_heap.poll());
-		int[] data = {2, 4, 6, 5, 7, 9, 10, 1};
-		for (int d : data) {
-			min_heap.add(d);
+		BinaryMaxHeap max_heap = new BinaryMaxHeap(10);
+		int[] data2 = {10, 9, 7, 5, 6, 4, 2, 11, 8};
+		for (int d : data2) {
+			max_heap.add(d);
 		}
-		System.out.println(Arrays.toString(min_heap.arr));
-		System.out.println(min_heap.poll());
-		System.out.println(Arrays.toString(min_heap.arr));
-		System.out.println(min_heap.poll());
-		System.out.println(Arrays.toString(min_heap.arr));
-		System.out.println(min_heap.poll());
-		System.out.println(Arrays.toString(min_heap.arr));
-		System.out.println(min_heap.poll());
-		System.out.println(Arrays.toString(min_heap.arr));
+		System.out.println(Arrays.toString(max_heap.arr));
+		System.out.println(max_heap.poll());
+		System.out.println(Arrays.toString(max_heap.arr));
+		System.out.println(max_heap.poll());
+		System.out.println(Arrays.toString(max_heap.arr));
+		System.out.println(max_heap.poll());
+		System.out.println(Arrays.toString(max_heap.arr));
+		
+		int[] data3 = {16, 4, 10, 14, 7, 9, 3, 2, 8, 1, 11};
+		System.out.println(Arrays.toString(heapsort1(data3, data3.length)));
+		System.out.println(Arrays.toString(heapsort2(data3, data3.length)));
+	}
+	
+	// heapsort1 : add, poll 활용
+	public static int[] heapsort1(int[] arr, int size) {
+		int[] result = new int[size];
+		BinaryMaxHeap max_heap = new BinaryMaxHeap(size);
+		
+		// 최대 힙 구성 - add
+		for (int data : arr) {
+			max_heap.add(data);
+		}
+		
+		// 오름차순 정렬 - poll
+		for (int i = size-1; i >= 0; i--) {
+			result[i] = max_heap.poll();
+		}
+		
+		return result;
+	}
+	
+	// heapsort2 : heapify 활용
+	public static int[] heapsort2(int[] arr, int size) {
+		BinaryMaxHeap max_heap = new BinaryMaxHeap(size);
+		max_heap.arr= arr;
+		max_heap.cnt = size;
+	
+		// 최대 힙 구성
+		int idx = max_heap.cnt-1;
+		int p_idx = (idx-1)/2;
+		for (int i = p_idx; i >= 0; i--) {
+			max_heap.heapify(i);
+		}
+		
+		// 오름차순 정렬 - poll과 동일
+		for (int i = idx; i >= 0; i--) {
+			max_heap.swap(0, i);
+			max_heap.cnt--;
+			max_heap.heapify(0);
+		}
+		
+		return max_heap.arr;
 	}
 }
 
-class BinaryMinHeap {
-	int[] arr;// 원소 저장
-	int size;// 배열의 크기
-	int cnt;// 배열에 저장된 원소의 개수
+
+class BinaryMaxHeap {
+	int[] arr;
+	int size;
+	int cnt;
 	
 	{
-		cnt = 0;
+		this.cnt = 0;
 	}
 	
-	public BinaryMinHeap(int size) {
+	public BinaryMaxHeap(int size) {
 		this.arr = new int[size];
 		this.size = size;
 	}
 	
-	// 추가
 	public void add(int data) {
 		if (cnt == size) {
 			System.out.println("heap is full!");
 			return;
 		}
-		int idx = cnt;
-		arr[idx] = data;// 데이터 삽입
 		
-		int p_idx = idx/2;// 부모 인덱스 
-		while (arr[p_idx] > arr[idx]) {// 부모 노드의 값이 현재 노드의 값보다 크다면 swap
-			swap(idx, p_idx);
+		arr[cnt] = data; // 맨 뒤 인덱스에 data 추가
+		
+		// heap 구조 유지
+		int idx = cnt;
+		int p_idx = (idx-1)/2;
+		
+		while (arr[p_idx] < arr[idx]) {
+			swap(p_idx, idx);
 			idx = p_idx;
-			p_idx = p_idx/2;
+			p_idx = (p_idx-1)/2;
 		}
+		
 		cnt++;
 	}
 	
-	// 삭제(맨 앞)
 	public int poll() {
 		if (cnt == 0) {
 			System.out.println("heap is empty!");
-			return -1;// 불가능
+			return -1;
 		}
-		
 		int v = arr[0];
-		int p_idx = 0;// 부모 인덱스
-		arr[0] = arr[cnt-1];
-		
-		while (true) {
-			int left = 2*p_idx+1;// 왼쪽 자식 인덱스
-			
-			if (!isValidIndex(left)) break;
-			
-			int min = arr[left]; 
-			int idx = left;
-			int right = left+1;// 오른쪽 자식 인덱스
-			
-			// 왼쪽과 오른쪽 중 더 작은 노드를 선택
-			if (isValidIndex(right) && arr[left] > arr[right]) {
-				min = arr[right];
-				idx = right;
-			}
-			
-			// 부모 노드 값이 작다면 탐색 종료
-			if (arr[p_idx] < min) {
-				break;
-			}
-			
-			// 아니면 부모노드와 자식 노드의 값을 swap
-			swap(idx, p_idx);
-			p_idx = idx;
-		}
-		
-		arr[cnt-1] = 0;
+		swap(0, cnt-1);
 		cnt--;
+		heapify(0);
+		arr[cnt] = 0;
 		return v;
 	}
 	
-	public boolean isValidIndex(int idx) {
-		return idx >=0 && idx < cnt;
+	public void heapify(int p_idx) {
+		int max = arr[p_idx];
+		int idx = p_idx;
+		
+		// 왼쪽 노드 확인
+		int left_idx = 2 * p_idx + 1;
+		if (left_idx < cnt && max < arr[left_idx]) {
+			max = arr[left_idx];
+			idx = left_idx;
+		}
+		
+		// 오른쪽 노드 확인
+		int right_idx = left_idx + 1;
+		if (right_idx < cnt && max < arr[right_idx]) {
+			max = arr[right_idx];
+			idx = right_idx;
+		}
+		
+		if (idx != p_idx) {
+			swap(p_idx, idx);
+			heapify(idx);
+		}
 	}
 	
+
 	public void swap(int a, int b) {
 		int temp = arr[a];
 		arr[a] = arr[b];
