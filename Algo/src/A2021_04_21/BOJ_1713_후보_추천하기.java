@@ -12,8 +12,6 @@ public class BOJ_1713_후보_추천하기 {
 		int[] recommend = new int[101];
 		int[] time = new int[101];
 		Arrays.fill(time, 1001);
-		LinkedList<Node> list = new LinkedList<>();
-		HashSet<Integer> set = new HashSet<>();
 		
 		int size = 0;
 		StringTokenizer st = new StringTokenizer(br.readLine());
