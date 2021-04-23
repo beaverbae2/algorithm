@@ -4,7 +4,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- * Backtracking
+ * DFS
  * 36MIN
  * 오래걸린 이유
  * - 문자열을 파싱해서 계산하는 것
@@ -16,7 +16,7 @@ public class BOJ_7490_0_만들기 {
 	static int N;
 	static StringBuilder sb;
 	static char[] arr = {' ', '+', '-'};// ASCII 순
-	
+	 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		int TC = Integer.parseInt(br.readLine());
