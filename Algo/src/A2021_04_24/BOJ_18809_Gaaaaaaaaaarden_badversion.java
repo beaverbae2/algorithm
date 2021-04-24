@@ -3,6 +3,8 @@ package A2021_04_24;
 import java.util.*;
 import java.io.*;
 /**
+ * Combination, BFS, Memoization
+ * 
  * 오래걸린 이유
  * - 문제 똑바로 해석 안함(꽃이 피는 조건)
  * - Queue에 다음 값을 집어넣어야 되는데 현재값을 집어넣음
