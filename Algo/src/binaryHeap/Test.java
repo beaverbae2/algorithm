@@ -1,6 +1,8 @@
 package binaryHeap;
 
 import java.util.Arrays;
+import java.util.StringTokenizer;
+import java.io.*;
 
 /**
  * MaxHeap
@@ -9,24 +11,48 @@ import java.util.Arrays;
  * 
  */
 
+
 public class Test {
-	public static void main(String[] args) {
-		BinaryMaxHeap max_heap = new BinaryMaxHeap(10);
-		int[] data2 = {10, 9, 7, 5, 6, 4, 2, 11, 8};
-		for (int d : data2) {
-			max_heap.add(d);
-		}
-		System.out.println(Arrays.toString(max_heap.arr));
-		System.out.println(max_heap.poll());
-		System.out.println(Arrays.toString(max_heap.arr));
-		System.out.println(max_heap.poll());
-		System.out.println(Arrays.toString(max_heap.arr));
-		System.out.println(max_heap.poll());
-		System.out.println(Arrays.toString(max_heap.arr));
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int N = Integer.parseInt(br.readLine());
+		BinaryMaxHeap maxHeap = new BinaryMaxHeap(N);
 		
-		int[] data3 = {16, 4, 10, 14, 7, 9, 3, 2, 8, 1, 11};
-		System.out.println(Arrays.toString(heapsort1(data3, data3.length)));
-		System.out.println(Arrays.toString(heapsort2(data3, data3.length)));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < N; i++) {
+			int x = Integer.parseInt(st.nextToken());
+			
+			if (x == 0) {
+				if (maxHeap.isEmpty()) {
+					sb.append(0).append("\n");
+				} else {
+					sb.append(maxHeap.poll()).append("\n");
+				}
+			}
+			
+			else {
+				maxHeap.add(x);
+			}
+		}
+		
+		System.out.println(sb.toString());
+		
+//		int[] data2 = {10, 9, 7, 5, 6, 4, 2, 11, 8};
+//		for (int d : data2) {
+//			max_heap.add(d);
+//		}
+//		System.out.println(Arrays.toString(max_heap.arr));
+//		System.out.println(max_heap.poll());
+//		System.out.println(Arrays.toString(max_heap.arr));
+//		System.out.println(max_heap.poll());
+//		System.out.println(Arrays.toString(max_heap.arr));
+//		System.out.println(max_heap.poll());
+//		System.out.println(Arrays.toString(max_heap.arr));
+//		
+//		int[] data3 = {16, 4, 10, 14, 7, 9, 3, 2, 8, 1, 11};
+//		System.out.println(Arrays.toString(heapsort1(data3, data3.length)));
+//		System.out.println(Arrays.toString(heapsort2(data3, data3.length)));
 	}
 	
 	// heapsort1 : add, poll 활용
@@ -84,6 +110,11 @@ class BinaryMaxHeap {
 	public BinaryMaxHeap(int size) {
 		this.arr = new int[size];
 		this.size = size;
+	}
+	
+	public boolean isEmpty() {
+		if (cnt == 0) return true;
+		return false;
 	}
 	
 	public void add(int data) {
