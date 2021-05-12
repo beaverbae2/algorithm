@@ -138,7 +138,5 @@ public class BOJ_2412_암벽_등반 {
 			
 			return this.c-o.c;
 		}
-		
-		
 	}
 }
