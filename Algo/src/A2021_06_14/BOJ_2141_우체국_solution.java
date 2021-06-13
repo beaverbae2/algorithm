@@ -18,7 +18,7 @@ import java.io.*;
  *     
  *     answer : 2 (가장 작은 위치 출력)
  *   
- * @author beave
+ * @author beaverbae
  * @see https://hsdevelopment.tistory.com/490
  */
 
