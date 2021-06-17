@@ -8,6 +8,7 @@ import java.util.*;
  * 어려웠던 이유
  * - 트리 디피 인줄 몰랐다...
  * - 구현을 아예 못했다
+ * - 트리에서 노드를 포함 시키거나 포함시키지않는 경우가 있을떄 트리디피 사용
  * 
  * @author beaverbae
  * @see https://gre-eny.tistory.com/18
