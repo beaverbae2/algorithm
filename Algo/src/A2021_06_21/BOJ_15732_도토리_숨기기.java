@@ -5,6 +5,7 @@ import java.io.*;
 
 /**
  * Binary Search
+ * 26MIN
  * 어려웠던 부분
  * - 도토리 개수 >= D (> D, == D 로 나누면 실패) 일때로 해야되네... => 왜 그런지 공부하자
  * @author beaverbae
