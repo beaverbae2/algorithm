@@ -5,6 +5,7 @@ import java.io.*;
 
 /**
  * Two Pointer
+ * 35MIN
  * 어려웠던 부분
  * - 시간 복잡도로 인해 brute force 불가 -> 최적화 필요 -> dp안될꺼 같음 -> two pointer 될꺼 같다고 판단 
  * - set -> map 사용 : 앞파벳의 존재 유무 뿐만 아니라 알파벳의 개수도 표현 필요
