@@ -13,7 +13,6 @@ import java.io.*;
 public class BOJ_14728_벼락치기_solution {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int ans = 0;
 		int N, T;
 		int[] W, V;
 		int[][] dp;
