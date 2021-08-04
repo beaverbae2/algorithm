@@ -61,7 +61,7 @@ public class BOJ_9466_텀_프로젝트 {
 		stack.push(v);
 		
 		while (!visited[next_v]) {
-			visited[next_v] = true;
+			visited[next_v] = true; 
 			v = next_v;
 			stack.push(v);
 			next_v = graph[v];
