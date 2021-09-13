@@ -13,7 +13,6 @@ public class BOJ_19542_전단지_돌리기 {
 	static int N, S, D;
 	static List<Integer>[] graph;
 	static int[] level, dist;
-	static boolean[] visited;
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,7 +24,6 @@ public class BOJ_19542_전단지_돌리기 {
 		graph = new List[N+1];
 		level = new int[N+1];
 		dist = new int[N+1];
-		visited = new boolean[N+1];
 		for (int i = 1; i < graph.length; i++) {
 			graph[i] = new ArrayList<>();
 			level[i] = dist[i] = -1;
