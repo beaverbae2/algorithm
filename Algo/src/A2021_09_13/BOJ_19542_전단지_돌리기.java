@@ -6,7 +6,7 @@ import java.io.*;
 /**
  * DFS
  * @author beaverbae
- * 재방문이 문제였다...
+ * 재방문이 문제였다. 재귀 사용시 함수 호출 전과 호출 후 작업 변화에 집중
  */
 
 public class BOJ_19542_전단지_돌리기 {
