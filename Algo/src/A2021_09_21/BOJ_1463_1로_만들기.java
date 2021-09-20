@@ -7,7 +7,7 @@ import java.io.*;
  * DP
  * 8MIN
  * @author beaverbae
- * 
+ * 런타임에러(인덱스 범위 초과) 조심
  */
 
 public class BOJ_1463_1로_만들기 {
