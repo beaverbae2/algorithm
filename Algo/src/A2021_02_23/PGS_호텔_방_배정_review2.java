@@ -1,0 +1,38 @@
+package A2021_02_23;
+
+import java.util.*;
+
+
+/**
+ * Recursion
+ * @author beaverbae
+ *
+ */
+
+public class PGS_호텔_방_배정_review2 {
+	HashMap<Long, Long> room = new HashMap<>();
+	
+	public long[] solution(long k, long[] room_number) {
+		long[] answer = new long[room_number.length];
+		
+		for (int i = 0; i < room_number.length; i++) {
+			answer[i] = getRoom(room_number[i]);
+		}
+		return answer;
+	}
+	
+	public long getRoom(long n) {
+		if (!room.containsKey(n)) {
+			room.put(n, n+1);
+			return n;
+		}
+		
+		long next = room.get(n);
+		room.put(n, getRoom(next));// 경로 압축
+		return room.get(n);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(Arrays.toString(new PGS_호텔_방_배정_review2().solution(10, new long[] {1,3,4,1,3,1})));
+	}
+}
