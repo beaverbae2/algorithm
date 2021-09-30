@@ -6,7 +6,7 @@ import java.io.*;
 /**
  * Sorting
  * @author beaverbae
- * Arrays.sort() 가 pq보다 빠르네
+ * pq가 삽입시 log n 만큼의 시간복잡도가 걸려서 배열로 푸는거 보다 느림
  */
 
 public class BOJ_2751_수_정렬하기_2_ver2 {
