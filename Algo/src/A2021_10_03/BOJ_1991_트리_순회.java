@@ -8,7 +8,7 @@ import java.io.*;
  * Tree
  * @author beaverbae
  * 이진 탐색 트리가 아니고 이진 트리 임에 주의
- * 배열로 구현하려면 (left : 2*i, right : 2*i+1 이용) 메모리 낭비가 심함
+ * 배열로 구현하려면 (left : 2*i, right : 2*i+1 이용) 메모리 낭비가 심함 -> Heap처럼 완전 이진 트리가 아니기 때문
  */
 
 public class BOJ_1991_트리_순회 {
