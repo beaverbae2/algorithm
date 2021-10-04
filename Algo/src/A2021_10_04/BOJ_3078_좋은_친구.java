@@ -5,6 +5,7 @@ import java.io.*;
 
 /**
  * Sliding window
+ * 60MIN
  * @author beaverbae
  * 어려웠던 점
  * - 정답이 long 범위 일수도 있음 : 최댓값이 300000C2
