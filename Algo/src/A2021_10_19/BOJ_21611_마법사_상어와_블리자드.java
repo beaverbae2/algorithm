@@ -15,7 +15,7 @@ public class BOJ_21611_마법사_상어와_블리자드 {
 	static int[][] board;
 	static int sr, sc;// 상어의 좌표
 	static int[][] dirs = {{}, {-1,0}, {1,0}, {0,-1}, {0,1}};
-	static ArrayList<Pair> positions;
+	static ArrayList<Pair> positions;// 달팽이 모양으로 이동하는 좌표 모음
 	static int total;
 	static int ans;
 	
@@ -79,6 +79,8 @@ public class BOJ_21611_마법사_상어와_블리자드 {
 		}
 		
 		int[][] nextBoard = new int[N][N];
+//		total = q.size(); // q의 사이즈가 total(구슬 전체 개수) 보다 클 수 있음
+		
 		int i = 1;
 		while (!q.isEmpty()) {
 			if (i == positions.size()) break;
@@ -138,8 +140,8 @@ public class BOJ_21611_마법사_상어와_블리자드 {
 
 	private static void move() {
 		int[][] nextBoard = new int[N][N];
-		int i = 1;
-		int j = 1;
+		int i = 1;// 출발지
+		int j = 1;// 목적지
 		int cnt = 0;
 		
 		while (true) {
@@ -169,10 +171,12 @@ public class BOJ_21611_마법사_상어와_블리자드 {
 			int nr = sr + i * dirs[di][0];
 			int nc = sc + i * dirs[di][1];
 			
+			/////	구슬이 있는 경우에만 total(구슬 갯수) 감소	/////
 			if (board[nr][nc] != 0) {
 				total--;
 				board[nr][nc] = 0;
 			}
+			////////////////////////////////////////////////
 		}
 	}
 
