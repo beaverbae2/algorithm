@@ -102,13 +102,15 @@ class Board {
 			}
 		}
 		
-		int n = total / list.size();
+		if (list.size() == 1) return false; 
 		
-		for (Pair p : list) {
+		int n = total / list.size();
+		while (!list.isEmpty()) {
+			Pair p = list.poll();
 			board[p.r][p.c] = n; 
 		}
 		
-		return list.size() > 1;
+		return true;
 	}
 	
 	private boolean isNation(int n1, int n2) {
