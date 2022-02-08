@@ -38,8 +38,7 @@ class Pair {
 class Board {
 	int N, L, R;
 	int[][] board, dirs;
-	boolean[][] isMove;
-	HashSet<String> set;
+	boolean[][] visited;
 	
 	public Board(int N, int L, int R) {
 		this.N = N;
@@ -57,53 +56,31 @@ class Board {
 	}
 	
 	public int excute() {
-		int cnt = 0;
-		while (open()) {
-			move();
-			cnt++;
-		}
+		int ans = 0;
 		
-		return cnt;
+		while (move()) ans++;
+		
+		return ans;
 	}
 	
-	public boolean open() {
-		boolean isOpenExist = false;
-		set = new HashSet<>();
-		isMove = new boolean[N][N];
+	public boolean move() {
+		boolean isMove = false;
+		visited = new boolean[N][N];
 		
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < N; c++) {
-				for (int d = 0; d < dirs.length; d++) {
-					int nr = r + dirs[d][0];
-					int nc = c + dirs[d][1];
-					if (!isOk(nr, nc)) continue;
-					
-					int sub = Math.abs(board[r][c] - board[nr][nc]);
-					if (sub < L || sub > R) continue;
-					
-					set.add((r * N + c)+" "+(nr * N + nc));
-					isMove[r][c] = true;
-					if (!isOpenExist) isOpenExist = true;
-				}
+				if (visited[r][c]) continue;
+				
+				isMove |= bfs(r, c);
 			}
 		}
 		
-		return isOpenExist;
+		return isMove;
 	}
 	
-	private void move() {
-		for (int r = 0; r < N; r++) {
-			for (int c = 0; c < N; c++) {
-				if (!isMove[r][c]) continue;
-				bfs(r, c);
-			}
-		}
-	}
-	
-	private void bfs(int sr, int sc) {
+	private boolean bfs(int sr, int sc) {
 		Queue<Pair> q = new LinkedList<>();
 		LinkedList<Pair> list = new LinkedList<>();
-		boolean[][] visited = new boolean[N][N];
 		int total = 0;
 		
 		q.offer(new Pair(sr, sc));
@@ -118,7 +95,7 @@ class Board {
 				int nr = p.r + dirs[d][0];
 				int nc = p.c + dirs[d][1];
 				
-				if (!isOk(nr, nc) || visited[nr][nc] || !isUnion(p.r * N + p.c, nr * N + nc)) continue;
+				if (!isOk(nr, nc) || visited[nr][nc] || !isNation(board[p.r][p.c], board[nr][nc])) continue;
 			
 				q.offer(new Pair(nr, nc));
 				visited[nr][nc] = true;
@@ -128,13 +105,15 @@ class Board {
 		int n = total / list.size();
 		
 		for (Pair p : list) {
-			board[p.r][p.c] = n;
-			isMove[p.r][p.c] = false;
+			board[p.r][p.c] = n; 
 		}
+		
+		return list.size() > 1;
 	}
 	
-	private boolean isUnion(int pos, int npos) {
-		return set.contains(pos+" "+npos);
+	private boolean isNation(int n1, int n2) {
+		int sub = Math.abs(n1 - n2);
+		return sub >= L && sub <= R;
 	}
 	
 	private boolean isOk(int nr, int nc) {
