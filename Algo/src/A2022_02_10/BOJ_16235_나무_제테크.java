@@ -12,7 +12,8 @@ import java.io.*;
 
 public class BOJ_16235_나무_제테크 {
 	static int[][] ground, A;
-	static PriorityQueue<Tree> aliveTrees, deadTrees, spreadTrees; 
+	static PriorityQueue<Tree> aliveTrees;
+	static Queue<Tree> deadTrees, spreadTrees; 
 	static int[][] dirs = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 	static int N, M, K;
 	
@@ -88,8 +89,8 @@ public class BOJ_16235_나무_제테크 {
 
 	private static void spring() {
 		PriorityQueue<Tree> nextAliveTrees = new PriorityQueue<>();
-		deadTrees = new PriorityQueue<>();
-		spreadTrees = new PriorityQueue<>();
+		deadTrees = new LinkedList<>();
+		spreadTrees = new LinkedList<>();
 		
 		while (!aliveTrees.isEmpty()) {
 			Tree t = aliveTrees.poll();
