@@ -6,7 +6,7 @@ import java.io.*;
 /**
  * DFS
  * @author beaverbae
- * - 행, 열, 3x3안에 있는 원소 확인을 기존 set에서 boolean배열로 표현
+ * - 행, 열, 3x3안에 있는 원소 확인을 기존 set에서 boolean배열로 표현하여 최적화
  * - 배열 쓸수 있으면 무조건 배열 쓰자 
  */
 
