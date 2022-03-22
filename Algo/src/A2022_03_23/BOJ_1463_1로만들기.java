@@ -3,6 +3,13 @@ package A2022_03_23;
 import java.util.*;
 import java.io.*;
 
+/**
+ * DP
+ * 11MIN
+ * @author beaverbae
+ *
+ */
+
 public class BOJ_1463_1로만들기 {
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
